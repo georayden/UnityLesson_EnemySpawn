@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : ObjectPool
@@ -11,12 +9,13 @@ public class EnemySpawner : ObjectPool
 
     [SerializeField] private SpawnPoint[] _spawnPoints;
 
-    private int currentSpawnPoint = 0;
+    private int _currentSpawnPoint = 0;
     private float _elapsedTime = 0;    
 
     private void Start()
     {
         _spawnPoints = gameObject.GetComponentsInChildren<SpawnPoint>();
+
         Initialize(_enemyPrefab);
     }
 
@@ -32,13 +31,13 @@ public class EnemySpawner : ObjectPool
 
                 enemy.GetComponent<Enemy>().SetTarget(_player);
 
-                SetEnemy(enemy, _spawnPoints[currentSpawnPoint].transform.position);
+                SetEnemy(enemy, _spawnPoints[_currentSpawnPoint].transform.position);
 
-                currentSpawnPoint++;
+                _currentSpawnPoint++;
 
-                if (currentSpawnPoint == _spawnPoints.Length)
+                if (_currentSpawnPoint == _spawnPoints.Length)
                 {
-                    currentSpawnPoint = 0;
+                    _currentSpawnPoint = 0;
                 }
             }            
         }
