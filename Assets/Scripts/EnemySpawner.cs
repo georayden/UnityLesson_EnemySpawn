@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class EnemySpawner : ObjectPool
 {
-
     [SerializeField] private Transform _player;
     [SerializeField] private Enemy _enemyPrefab;
     [SerializeField] private float _spawnFrequency = 2;
 
-    [SerializeField] private SpawnPoint[] _spawnPoints;
+    private SpawnPoint[] _spawnPoints;
 
     private int _currentSpawnPoint = 0;
     private bool _isWork;
