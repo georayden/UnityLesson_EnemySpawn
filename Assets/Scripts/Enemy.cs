@@ -4,11 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Enemy : MonoBehaviour
 {
+    private const string Speed = "Speed";
+
     [SerializeField] private int _damage;
     [SerializeField] private float _speed;
     [SerializeField] private Transform _target;
-
-    private const string Speed = "Speed";
 
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;

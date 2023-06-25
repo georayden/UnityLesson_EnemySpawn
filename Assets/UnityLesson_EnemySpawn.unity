@@ -1195,7 +1195,7 @@ MonoBehaviour:
   _container: {fileID: 2033192332}
   _capacity: 6
   _player: {fileID: 1043072060}
-  _enemyPrefab: {fileID: 1175031292259332354, guid: c5b5b03edc973e24f87054652e85d3c7, type: 3}
+  _enemyPrefab: {fileID: -4576619745031934676, guid: c5b5b03edc973e24f87054652e85d3c7, type: 3}
   _spawnFrequency: 2
   _spawnPoints: []
 --- !u!4 &2010452907

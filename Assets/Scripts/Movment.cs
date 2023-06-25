@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Movment : MonoBehaviour
 {
-    [SerializeField] private float _speed;
-
     private const string Speed = "Speed";
+
+    [SerializeField] private float _speed;
 
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;

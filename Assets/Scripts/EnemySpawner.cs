@@ -4,7 +4,7 @@ public class EnemySpawner : ObjectPool
 {
 
     [SerializeField] private Transform _player;
-    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private Enemy _enemyPrefab;
     [SerializeField] private float _spawnFrequency = 2;
 
     [SerializeField] private SpawnPoint[] _spawnPoints;
@@ -16,7 +16,7 @@ public class EnemySpawner : ObjectPool
     {
         _spawnPoints = gameObject.GetComponentsInChildren<SpawnPoint>();
 
-        Initialize(_enemyPrefab);
+        Initialize(_enemyPrefab.gameObject);
     }
 
     private void Update()
