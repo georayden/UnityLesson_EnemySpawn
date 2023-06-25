@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemySpawner : ObjectPool
@@ -10,25 +11,27 @@ public class EnemySpawner : ObjectPool
     [SerializeField] private SpawnPoint[] _spawnPoints;
 
     private int _currentSpawnPoint = 0;
-    private float _elapsedTime = 0;    
+    private bool _isWork;
 
     private void Start()
     {
         _spawnPoints = gameObject.GetComponentsInChildren<SpawnPoint>();
 
         Initialize(_enemyPrefab.gameObject);
+
+        StartCoroutine(StartSpawn());
     }
 
-    private void Update()
+    private IEnumerator StartSpawn()
     {
-        _elapsedTime += Time.deltaTime;
+        var waitForSeconds = new WaitForSeconds(_spawnFrequency);
 
-        if(_elapsedTime >= _spawnFrequency)
+        _isWork = true;
+
+        while (_isWork)
         {
-            if(TryGetObject(out GameObject enemy))
+            if (TryGetObject(out GameObject enemy))
             {
-                _elapsedTime = 0;
-
                 enemy.GetComponent<Enemy>().SetTarget(_player);
 
                 SetEnemy(enemy, _spawnPoints[_currentSpawnPoint].transform.position);
@@ -39,8 +42,15 @@ public class EnemySpawner : ObjectPool
                 {
                     _currentSpawnPoint = 0;
                 }
-            }            
+            }
+
+            yield return waitForSeconds;
         }
+    }
+
+    public void Stop()
+    {
+        _isWork = false;
     }
 
     private void SetEnemy(GameObject enemy,  Vector3 spawnPoint)
