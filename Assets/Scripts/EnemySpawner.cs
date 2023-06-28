@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class EnemySpawner : ObjectPool
 {
-    [SerializeField] private Transform _player;
     [SerializeField] private Enemy _enemyPrefab;
     [SerializeField] private float _spawnFrequency = 2;
 
@@ -31,7 +30,7 @@ public class EnemySpawner : ObjectPool
         {
             if (TryGetObject(out GameObject enemy))
             {
-                enemy.GetComponent<Enemy>().SetTarget(_player);
+                enemy.GetComponent<Enemy>();
 
                 SetEnemy(enemy, _spawnPoints[_currentSpawnPoint].transform.position);
 
